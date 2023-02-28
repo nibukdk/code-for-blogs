@@ -45,21 +45,22 @@ function colorDuplicateRows() {
 }
 
 /**
- * Function takes two items x and arr.
- * The parameter "x" is a string to be compared to items in array "arr".
- * @param {String} x
+ * Function takes two items: row and arr.
+ * The parameter "row" is a string to be compared to items in array "arr".
+ * Inspired from https://stackoverflow.com/a/68424642/6163929
+ * @param {String} row
  * @param {Array<String>} arr
  * @returns {Boolean}
  */
-function isDuplicateRow(x, arr) {
-  return x === "" ? false : arr.indexOf(x) != arr.lastIndexOf(x);
+function isDuplicateRow(row, arr) {
+  return row === "" ? false : arr.indexOf(row) != arr.lastIndexOf(row);
 }
 
 /**
  * Menu creates menu UI in spreadsheet.
  */
-function menu() {
-  let menu = SpreadsheetApp.getUi().createMenu("Duplicate Row Finder"); // Or DocumentApp or SlidesApp or FormApp.
+function createCustomMenu() {
+  let menu = SpreadsheetApp.getUi().createMenu("Highlight Duplicate Rows"); 
 
   menu.addItem("Highlight Duplicate Row", "colorDuplicateRows");
   menu.addItem("Reset Colors", "colorReset");
@@ -71,7 +72,7 @@ function menu() {
  * @param {Dictionary} e
  */
 function onOpen(e) {
-  menu();
+  createCustomMenu();
 }
 
 /**
@@ -91,3 +92,12 @@ function getRandomUniqueColor() {
   let n = (Math.random() * 0xfffff * 1000000).toString(16);
   return "#" + n.slice(0, 6);
 }
+
+/**
+ * Code By Nibesh Khadka.
+ * I am freelance and Google Workspace Automation Expert.
+ * You can find me in:
+ * https://linkedin.com/in/nibesh-khadka
+ * https://nibeshkhadka.com
+ * me@nibeshkhadka.com
+ */
